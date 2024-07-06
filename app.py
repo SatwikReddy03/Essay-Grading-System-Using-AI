@@ -49,7 +49,7 @@ def calculate_score(text):
     return score
 
 
-openai.api_key = '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'
+openai.api_key = 'Your api'
 
 def get_feedback_and_grade(essay):
     URL = "https://api.openai.com/v1/chat/completions"
