@@ -1,0 +1,845 @@
+fsd internal 1
+#armstrong
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Armstrong Number Checker</title>
+</head>
+<body>
+    <script>
+        // Function to check if a number is an Armstrong number
+        function isArmstrongNumber(number) {
+            const numStr = number.toString();
+            const numDigits = numStr.length;
+            let sum = 0;
+
+            for (let i = 0; i < numDigits; i++) {
+                sum += Math.pow(parseInt(numStr[i]), numDigits);
+            }
+
+            return sum === number;
+        }
+
+        // Click event handler
+        function checkArmstrongNumber() {
+            const userInput = document.getElementById("userInput").value;
+            const numberToCheck = parseInt(userInput);
+
+            if (!isNaN(numberToCheck)) {
+                if (isArmstrongNumber(numberToCheck)) {
+                    console.log(${numberToCheck} is an Armstrong number.);
+                } else {
+                    console.log(${numberToCheck} is not an Armstrong number.);
+                }
+            } else {
+                console.log("Invalid input. Please enter a valid number.");
+            }
+        }
+    </script>
+
+    <label for="userInput">Enter a number:</label>
+    <input type="text" id="userInput">
+    <button onclick="checkArmstrongNumber()">Check</button>
+</body>
+</html>
+
+
+
+
+
+2)cell padding and spacing
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 40px;
+}
+</style>
+</head>
+<body>
+<h2>Cellpadding - top - bottom - left - right </h2>
+<p>We can specify different padding for all fours sides of the cell content.</p>
+
+<table style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th> 
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+  <tr>
+    <td>John</td>
+    <td>Doe</td>
+    <td>80</td>
+  </tr>
+</table>
+</body>
+</html>
+
+3)calci
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+</head>
+<body>
+
+  <h2>Calculator</h2>
+
+  <form id="calculatorForm">
+    <label for="num1">Enter the first number:</label>
+    <input type="number" id="num1" required>
+
+    <label for="num2">Enter the second number:</label>
+    <input type="number" id="num2" required>
+
+    <button type="button" onclick="performOperations()">Calculate</button>
+  </form>
+
+  <h3>Results:</h3>
+  <p id="sum"></p>
+  <p id="product"></p>
+  <p id="difference"></p>
+  <p id="quotient"></p>
+
+  <script>
+    function performOperations() {
+      // Get input values
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+
+      // Check if the input is valid
+      
+      if (isNaN(num1) || isNaN(num2)) {
+        alert("Please enter valid numbers.");
+        return;
+      }
+
+      // Perform operations
+      const sum = num1 + num2;
+      const product = num1 * num2;
+      const difference = num1 - num2;
+      const quotient = num1 / num2;
+
+      // Display results
+     console.log(sum);
+     console.log(product);
+     console.log(difference);
+     console.log(quotient);
+    }
+  </script>
+
+</body>
+</html>
+4)biodata and email validation
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biodata Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: #ff0000;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="registrationForm">
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" required>
+
+    <button type="button" onclick="validateForm()">Register</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      // Get input values
+      const fullName = document.getElementById("fullName").value;
+      const email = document.getElementById("email").value;
+      const age = document.getElementById("age").value;
+
+      // Validate email using a simple regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        console.log("Please enter a valid email address.");
+        return;
+      }
+
+      // Display Biodata
+      console.log(fullName+"\n"+email+"\n"+age);
+    }
+  </script>
+
+</body>
+</html>
+
+5)registration form
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: #ff0000;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="registrationForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" required>
+    <div class="error" id="usernameError"></div>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    <div class="error" id="emailError"></div>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" required>
+    <div class="error" id="passwordError"></div>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" required>
+    <div class="error" id="confirmPasswordError"></div>
+
+    <button type="button" onclick="validateForm()">Register</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      // Reset errors
+      resetErrors();
+
+      // Get input values
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      // Validate username (should not be empty)
+      if (!username.trim()) {
+        console.log("username", "Username cannot be empty");
+        return;
+      }
+
+      // Validate email using a simple regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        console.log("email", "Please enter a valid email address");
+        return;
+      }
+
+      // Validate password (should be at least 6 characters)
+      if (password.length < 6) {
+        console.log("password", "Password should be at least 6 characters");
+        return;
+      }
+
+      // Validate password confirmation
+      if (password !== confirmPassword) {
+        console.log("confirmPassword", "Passwords do not match");
+        return;
+      }
+
+      // If all validations pass, submit the form (or perform further actions)
+      console.log("Registration successful!");
+    }
+
+    function displayError(fieldId, errorMessage) {
+      const errorElement = document.getElementById(${fieldId}Error);
+      errorElement.textContent = errorMessage;
+    }
+
+    function resetErrors() {
+      const errorElements = document.querySelectorAll(".error");
+      errorElements.forEach((element) => {
+        element.textContent = "";
+      });
+    }
+  </script>
+
+</body>
+</html>
+
+7)numbers to words
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number to Words Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    p {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="numberForm">
+    <label for="number">Enter a number:</label>
+    <input type="number" id="number" required>
+    <button type="button" onclick="convertToWords()">Convert</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    function convertToWords() {
+      const number = parseInt(document.getElementById("number").value);
+
+      if (isNaN(number)) {
+        console.log("Please enter a valid number.");
+        return;
+      }
+
+      const words = numberToWords(number);
+      console.log("result :"+words);
+    }
+
+    function numberToWords(number) {
+      const units = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+      const teens = ["", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+      const tens = ["", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+
+      if (number === 0) {
+        return "Zero";
+      }
+
+      let words = "";
+
+      // Handle millions
+      if (number >= 1000000) {
+        words += numberToWords(Math.floor(number / 1000000)) + " Million ";
+        number %= 1000000;
+      }
+
+      // Handle thousands
+      if (number >= 1000) {
+        words += numberToWords(Math.floor(number / 1000)) + " Thousand ";
+        number %= 1000;
+      }
+
+      // Handle hundreds
+      if (number >= 100) {
+        words += units[Math.floor(number / 100)] + " Hundred ";
+        number %= 100;
+      }
+
+      // Handle tens and units
+      if (number > 0) {
+        if (number >= 11 && number <= 19) {
+          words += teens[number - 11] + " ";
+        } else {
+          words += tens[Math.floor(number / 10)] + " " + units[number % 10] + " ";
+        }
+      }
+
+      return words.trim();
+    }
+  </script>
+
+</body>
+</html>
+
+8)internal
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-color: blue;
+}
+h1 {
+    color: red;
+    padding: 60px;
+} 
+</style>
+</head>
+<body>
+
+<h1>Hostinger Tutorials</h1>
+<p>This is our paragraph.</p>
+
+</body>
+</html>
+
+inline
+<!DOCTYPE html>
+<html>
+<body style="background-color:black;">
+
+<h1 style="color:white;padding:30px;">Hostinger Tutorials</h1>
+<p style="color:white;">Something usefull here.</p>
+
+</body>
+</html>
+
+external
+<link rel="stylesheet" type="text/css" href="style.css" />
+.xleftcol {
+   float: left;
+   width: 33%;
+   background:#809900;
+}
+.xmiddlecol {
+   float: left;
+   width: 34%;
+   background:#eff2df;
+}
+
+9}multiplication table
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Function to generate and print multiplication tables for numbers 1 to 10
+function printMultiplicationTables() {
+  for (let i = 1; i <= 10; i++) {
+    console.log(Multiplication Table for ${i}:);
+    for (let j = 1; j <= 10; j++) {
+      const result = i * j;
+      console.log(${i} x ${j} = ${result});
+    }
+    console.log(); // Add a newline for better readability
+  }
+}
+
+// Example: Print multiplication tables for numbers 1 to 10
+printMultiplicationTables();
+
+    </script>
+</body>
+</html>
+
+
+10)age verification
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Verification</title>
+</head>
+<body>
+
+  <script>
+    // Prompt the user to enter their age
+    const userAge = prompt("Please enter your age:");
+
+    // Check if the entered age is greater than 18
+    if (userAge && parseInt(userAge) > 18) {
+      alert("Welcome! You are allowed to enter the site.");
+    } else {
+      alert("Sorry! You are not allowed to enter the site.");
+    }
+  </script>
+
+</body>
+</html>
+
+11)factorial
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factorial Calculator</title>
+</head>
+<body>
+
+  <script>
+    // Prompt the user to enter a number
+    const userInput = prompt("Enter a number:");
+
+    // Convert the input to a number
+    const number = parseInt(userInput);
+
+    // Check if the input is a valid number
+    if (!isNaN(number) && number >= 0) {
+      // Calculate the factorial
+      let factorial = 1;
+      for (let i = 1; i <= number; i++) {
+        factorial *= i;
+      }
+
+      // Display the result using alert
+      console.log(The factorial of ${number} is: ${factorial});
+    } else {
+      // Display an alert for invalid input
+      console.log("Please enter a non-negative integer.");
+    }
+  </script>
+
+</body>
+</html>
+
+12)show capital
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Capital Display</title>
+</head>
+<body>
+
+  <label for="countrySelect">Select a country:</label>
+  <select id="countrySelect">
+    <option value="usa">United States</option>
+    <option value="canada">Canada</option>
+    <option value="uk">United Kingdom</option>
+    <!-- Add more countries as needed -->
+  </select>
+
+  <button onclick="displayCapital()">Show Capital</button>
+
+  <script>
+    function displayCapital() {
+      // Get the selected country from the dropdown
+      const selectedCountry = document.getElementById("countrySelect").value;
+
+      // Use a switch statement to determine the capital based on the selected country
+      let capital;
+      switch (selectedCountry) {
+        case "usa":
+          capital = "Washington, D.C.";
+          break;
+        case "canada":
+          capital = "Ottawa";
+          break;
+        case "uk":
+          capital = "London";
+          break;
+        // Add more cases for additional countries
+
+        default:
+          capital = "Unknown";
+      }
+
+      // Display the capital using alert (you can use other methods if needed)
+      console.log(The capital of ${selectedCountry.charAt(0).toUpperCase() + selectedCountry.slice(1)} is: ${capital});
+    }
+  </script>
+
+</body>
+</html>
+
+13)faculty and details
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Time Table</title>
+  <style>
+    /* Optional: Add some basic styling for better presentation */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .subject {
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="subject" onclick="displayFacultyInfo('Math', 'John Doe', 'Math Department', 'Room 101')">
+    Math
+  </div>
+
+  <div class="subject" onclick="displayFacultyInfo('English', 'Jane Smith', 'English Department', 'Room 102')">
+    English
+  </div>
+
+  <div class="subject" onclick="displayFacultyInfo('History', 'Bob Johnson', 'History Department', 'Room 103')">
+    History
+  </div>
+
+  <!-- Add more subjects as needed -->
+
+  <script>
+    function displayFacultyInfo(subject, facultyName, deptNo, roomNo) {
+      const message = Subject: ${subject}\nFaculty Name: ${facultyName}\nDepartment: ${deptNo}\nRoom No: ${roomNo};
+      console.log(message);
+    }
+  </script>
+
+</body>
+</html>
+
+
+14)display time at one end
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #start-time {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 10px;
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <form id="nameForm">
+      <label for="name">Enter your name:</label>
+      <input type="text" id="name" required>
+      <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <div id="helloPage" style="display: none;">
+      <h2>Hello <span id="displayName"></span>!</h2>
+      <div id="start-time">Start Time: <span id="startTime"></span></div>
+      <button onclick="logout()">Logout</button>
+    </div>
+
+    <div id="logoutPage" style="display: none;">
+      <h2>Thank You for using the application!</h2>
+      <p>Duration of usage: <span id="duration"></span></p>
+    </div>
+  </div>
+
+  <script>
+    let startTime;
+    
+    function submitForm() {
+      const name = document.getElementById("name").value;
+      if (name.trim() !== "") {
+        // Save name and start time in session storage
+        sessionStorage.setItem("name", name);
+        startTime = new Date();
+        sessionStorage.setItem("startTime", startTime.toISOString());
+
+        // Display hello page
+        document.getElementById("displayName").innerText = name;
+        document.getElementById("startTime").innerText = startTime.toLocaleTimeString();
+        document.getElementById("nameForm").style.display = "none";
+        document.getElementById("helloPage").style.display = "block";
+      }
+    }
+
+    function logout() {
+      // Calculate duration
+      const endTime = new Date();
+      const duration = Math.round((endTime - startTime) / 1000); // in seconds
+
+      // Display logout page with duration
+      document.getElementById("duration").innerText = ${duration} seconds;
+      document.getElementById("helloPage").style.display = "none";
+      document.getElementById("logoutPage").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
+
+

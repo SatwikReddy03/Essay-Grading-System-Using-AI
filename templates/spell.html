@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grammar and spell check app</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<style>
+body {
+  padding: 20px;
+  background: #f8f9fa; /* light grey background */
+  color: #343a40; /* dark grey text color */
+}
+
+.container {
+  margin-top: 20px;
+  max-width: 1000px;
+  background: #ffffff; /* white background for container */
+  padding: 20px;
+  border-radius: 10px; /* rounded corners */
+  border:10px solid blueviolet;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* subtle shadow effect */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+  resize: none;
+}
+
+.btn-primary {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.corrected-text {
+  margin-top: 30px;
+  font-size: 18px;
+  /* font-weight: bold; */
+   /* green color for corrected words */
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+</style>
+</head>
+<body>
+<h1>Grammar And Spell Checker</h1>
+<div class="container">
+  <form action="/spell" method="post" enctype="multipart/form-data">
+    <div class="row">
+     
+      <div class="col">
+        {% if corrected_words %}
+        <h5>Original Text:</h5>
+        <p class="mb-3">{{ original_text }}</p>
+        <h5>Corrected Text:</h5>
+        <p class="corrected-text">
+          {% for word, corrected_word in corrected_words %}
+            {% if word != corrected_word %}
+              <span style="background-color: lightgreen;" >{{ corrected_word }}</span>
+            {% else %}
+              {{ word }}
+            {% endif %}
+            {% if not loop.last %}&nbsp;{% endif %}
+          {% endfor %}
+        </p>
+        {% endif %}
+      </div>
+    </div>
+  </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

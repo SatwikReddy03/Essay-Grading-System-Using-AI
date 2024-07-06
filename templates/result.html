@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F5EDED;
+            color: #000000;
+            background-image: url('static\uploads\background.png');
+        }
+
+        h1 {
+            color: #7F5283;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        pre {
+            font-family: Arial;
+            background-color: #FFFFFF;
+            padding: 10px;
+            border: 1px solid #7F5283;
+            border-radius: 4px;
+            box-sizing: border-box;
+            width: 80%; /* Set the width */
+            height: 200px; /* Set a fixed height for vertical scrolling */
+            overflow-y: auto; /* Allow vertical scrolling */
+            white-space: pre-wrap; /* Wrap text */
+        }
+
+        h2 {
+            color: #7F5283;
+        }
+
+        button {
+            background-color: #7F5283;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #000000;
+        }
+
+        #feedback {
+            display: none;
+        }
+        .extracted_text{
+            margin-left: 20%;
+        }
+        .container{
+            margin-left: 5%;
+            text-align: center;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .feedback,.score,.spell{
+            display: flex;
+            flex-direction: column;
+        }
+        img{
+            height: 200px;
+            width: 200px;
+            border-radius: 10px;
+            border: 1px solid black;
+        }
+        button[type="submit"]:hover {
+    background-color: #000000;
+    transition: background-color 0.3s ease; /* Added transition property */
+  }
+    </style>
+</head>
+<body>
+    <h1>Extracted Text</h1>
+    
+    <div class="extracted_text"><pre>{{ text }}</pre></div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="feedback">
+            <img src="static\uploads\feedback.png" alt="feedback_image">
+            <form action="{{ url_for('display_feedback') }}" method="post">
+                <input type="hidden" name="text" value="{{ text }}">
+                <button type="submit">Get Feedback</button>
+            </form>
+        </div>
+        <div class="score">
+            <img src="static\uploads\score.png" alt="score_image">
+            <form action="{{ url_for('display_score') }}" method="post">
+                <input type="hidden" name="text" value="{{ text }}">
+                <button type="submit">Get Score</button>
+            </form>
+        </div>
+        <div class="spell">
+            <img src="static\uploads\spell.png" alt="spelling_image">
+            <form action="{{ url_for('spelling') }}" method="post">
+                <input type="hidden" name="text" value="{{ text }}">
+                <button type="submit">Check for spelling mistakes</button>
+            </form>
+        </div>
+    </div>
+    <div id="feedback">
+        <h3>Feedback:</h3>
+        <p>{{ feedback }}</p>
+    </div>
+</body>
+</html>

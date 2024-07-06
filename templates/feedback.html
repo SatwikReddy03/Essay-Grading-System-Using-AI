@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Set the height of the body to fill the viewport */
+            background-color: #F5EDED;
+            color: #000000;
+        }
+        h2{
+            color:#7F5283;
+        }
+
+        .container {
+            width: 80%; /* Adjust the width */
+            height: 400px; /* Adjust the height */
+            max-width: 800px; /* Set maximum width */
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #D72323;
+            border-radius: 5px;
+            background-color: #FFFFFF;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Hide overflow content */
+        }
+
+        p {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 18px; /* Adjust the font size */
+            word-wrap: break-word; /* Wrap long words */
+            overflow-wrap: break-word; /* Wrap long words for Firefox */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Feedback:</h2>
+        <p>{{ feedback  }}</p>
+    </div>
+</body>
+</html>
+
+
+
